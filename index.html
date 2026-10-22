@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ماهسیس | نرم‌افزار حسابداری و مدیریت کسب‌وکار</title>
+  <meta name="description" content="ماهسیس؛ یکپارچه‌سازی عملیات کسب‌وکار از سفارش و فروش تا انبار و حسابداری. یک سال مجوز رایگان ویژه ۵۰۰ نصب‌کننده اول.">
+  <style>
+    :root {
+      --primary: #1a6b8a;
+      --primary-dark: #14546d;
+      --accent: #2ea44f;
+      --bg: #f5f8fa;
+      --text: #24292e;
+      --text-light: #586069;
+      --border: #e1e4e8;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Tahoma, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* هدر */
+    header.hero {
+      background: linear-gradient(135deg, #1a6b8a 0%, #14546d 100%);
+      color: #fff;
+      padding: 70px 0 60px;
+      text-align: center;
+    }
+    header.hero h1 { font-size: 2.3rem; margin-bottom: 16px; }
+    header.hero p.lead {
+      font-size: 1.15rem;
+      opacity: 0.95;
+      max-width: 640px;
+      margin: 0 auto 28px;
+    }
+    .badge {
+      display: inline-block;
+      background: #ffd33d;
+      color: #24292e;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: all 0.2s;
+      margin: 6px;
+    }
+    .btn-download { background: var(--accent); color: #fff; }
+    .btn-download:hover { background: #2c974b; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.7); }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); }
+
+    /* بخش‌ها */
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      margin-bottom: 28px;
+    }
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+      display: inline-block;
+    }
+
+    /* امکانات */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 22px;
+      border-right: 4px solid var(--primary);
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+    .feature-card ul { list-style: none; }
+    .feature-card li {
+      font-size: 0.9rem;
+      padding: 5px 0;
+      padding-right: 22px;
+      position: relative;
+    }
+    .feature-card li::before {
+      content: "✔";
+      position: absolute;
+      right: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* طرح‌ها */
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .plan {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px 22px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .plan:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+    .plan.featured { border: 2px solid var(--primary); position: relative; }
+    .plan .plan-name { font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; }
+    .plan .plan-price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--primary-dark);
+      margin: 12px 0;
+    }
+    .plan .plan-price small { font-size: 0.8rem; color: var(--text-light); font-weight: normal; }
+    .plan ul { list-style: none; text-align: right; margin: 16px 0; }
+    .plan li {
+      font-size: 0.88rem;
+      padding: 4px 0;
+      padding-right: 22px;
+      position: relative;
+    }
+    .plan li::before {
+      content: "✔";
+      position: absolute;
+      right: 0;
+      color: var(--accent);
+    }
+    .plan .btn-plan {
+      display: block;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+    .plan .btn-plan:hover { background: var(--primary-dark); }
+
+    /* مراحل نصب */
+    .steps { counter-reset: step; }
+    .step {
+      position: relative;
+      padding-right: 60px;
+      margin-bottom: 28px;
+      counter-increment: step;
+    }
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 42px;
+      height: 42px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .step h3 { font-size: 1.05rem; margin-bottom: 6px; color: var(--primary-dark); }
+    .step p { font-size: 0.92rem; color: var(--text-light); }
+
+    /* نظرات */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .testimonial {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 22px;
+      border-top: 3px solid var(--primary);
+    }
+    .testimonial p.quote {
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .testimonial .author { font-weight: bold; font-size: 0.9rem; }
+    .testimonial .role { font-size: 0.82rem; color: var(--text-light); }
+
+    /* CTA نهایی */
+    .cta-final {
+      background: linear-gradient(135deg, #1a6b8a 0%, #14546d 100%);
+      color: #fff;
+      text-align: center;
+      border: none;
+    }
+    .cta-final h2 { color: #fff; border-bottom-color: #ffd33d; }
+    .cta-final p { opacity: 0.95; margin-bottom: 24px; }
+
+    /* فوتر */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-light);
+      font-size: 0.88rem;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      header.hero h1 { font-size: 1.6rem; }
+      section { padding: 24px 18px; }
+      .step { padding-right: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- هدر -->
+  <header class="hero">
+    <div class="container">
+      <h1>ماهسیس | نرم‌افزار حسابداری و مدیریت کسب‌وکار</h1>
+      <p class="lead">
+        یکپارچه‌سازی عملیات کسب‌وکار از سفارش و فروش تا انبار و حسابداری
+      </p>
+      <div class="badge">🎁 یک سال مجوز رایگان ویژه ۵۰۰ نصب‌کننده اول</div>
+      <div>
+        <a class="btn btn-download" href="https://github.com/MhmdAlikhani/Mahsys/releases/latest">⬇️ دانلود نرم‌افزار</a>
+        <a class="btn btn-outline" href="#features">مرور امکانات</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 36px;">
+
+    <!-- امکانات -->
+    <section id="features">
+      <h2>امکانات نرم‌افزار ماهسیس</h2>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <h3>مدیریت سفارشات</h3>
+          <ul>
+            <li>دریافت سفارشات مشتریان و چاپ در قالب‌های دلخواه</li>
+            <li>محاسبه و ثبت مبلغ سررسید مطالبات</li>
+            <li>تبدیل خودکار سفارشات فروش به فاکتور</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3>فاکتور و وصول مطالبات</h3>
+          <ul>
+            <li>پشتیبانی از فاکتورهای خرید، فروش و برگشتی</li>
+            <li>کنترل موجودی کالا هنگام صدور فاکتور</li>
+            <li>صدور خودکار حواله و رسید بر اساس فاکتورها</li>
+            <li>ثبت خودکار اسناد حسابداری</li>
+            <li>مدیریت تخصیص دریافتی‌ها و تسویه فاکتور به فاکتور</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3>مدیریت انبار و کالا</h3>
+          <ul>
+            <li>افتتاح حساب تجاری برای کالاها و گردش حساب کالایی</li>
+            <li>صدور خودکار حواله ورود و خروج کالا</li>
+            <li>جابجایی بین انبارها و انبارگردانی</li>
+            <li>ثبت خودکار اسناد حسابداری انبار</li>
+            <li>محاسبه قیمت تمام‌شده (میانگین وزنی، FIFO، LIFO)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3>مدیریت چک‌های دریافتی و پرداختی</h3>
+          <ul>
+            <li>تعریف دسته‌چک برای حساب‌های بانکی</li>
+            <li>ثبت چک برای طرف‌حساب‌ها</li>
+            <li>پیگیری گردش چک تا وصول یا پرداخت</li>
+            <li>برگشت چک، خواباندن به حساب و وصول در بانک</li>
+            <li>ثبت خودکار اسناد حسابداری چک‌ها</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3>مدیریت اطلاعات پایه</h3>
+          <ul>
+            <li>تعریف چندین شرکت و شعبه</li>
+            <li>تعریف سال مالی و تفکیک گزارش‌ها</li>
+            <li>تعریف حساب بانکی، صندوق، کالا و اشخاص</li>
+            <li>حساب‌های تجاری شناور برای موجودیت‌ها</li>
+            <li>تعریف مناطق جغرافیایی و چارت حساب‌ها</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3>اتوماسیون اسناد مالی</h3>
+          <ul>
+            <li>اتصال به سامانه سندیار</li>
+            <li>صدور خودکار اسناد برای چهار چرخه اصلی کسب‌وکار</li>
+            <li>حذف عملیات تکراری و افزایش دقت ثبت‌ها</li>
+            <li>تشخیص خودکار نوع سند</li>
+            <li>آزادسازی وقت حسابداران برای تحلیل داده‌ها</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- مراحل شروع -->
+    <section>
+      <h2>از کجا شروع کنیم؟</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>دانلود نرم‌افزار</h3>
+          <p>نرم‌افزار را دانلود و نصب نمایید. پیش‌نیازهای لازم در مراحل نصب راهنمایی می‌شود و یک فایل راهنمای نصب نیز در اختیار شما قرار دارد.</p>
+        </div>
+        <div class="step">
+          <h3>اخذ مجوز استفاده تستی</h3>
+          <p>پس از نصب، با اجرای نرم‌افزار یک کد لایسنس تولید می‌شود. با مراجعه به سایت، مجوز استفاده رایگان و آزمایشی را دریافت کنید. کد لایسنس به مدت سه ماه فعال خواهد شد.</p>
+        </div>
+        <div class="step">
+          <h3>اخذ مجوز استفاده تجاری</h3>
+          <p>بعد از استفاده تستی و اطمینان از تطابق نرم‌افزار با نیازهایتان، می‌توانید مجوز تجاری یک یا دوساله تهیه کنید. برای مجوزهای گسترده‌تر با شرکت مکاتبه کنید.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- طرح‌ها -->
+    <section>
+      <h2>طرح‌های فروش</h2>
+      <div class="plans">
+
+        <div class="plan">
+          <div class="plan-name">رایگان</div>
+          <div class="plan-price">۰ <small>ریال</small></div>
+          <ul>
+            <li>مجوز نصب روی یک کامپیوتر</li>
+            <li>اعتبار سه ماهه رایگان</li>
+            <li>بروزرسانی تا پایان مهلت تست</li>
+          </ul>
+          <a class="btn-plan" href="#">افزودن به سبد خرید</a>
+        </div>
+
+        <div class="plan featured">
+          <div class="plan-name">استاندارد / یک ساله / یک کاربر</div>
+          <div class="plan-price">۴۰٬۰۰۰٬۰۰۰ <small>ریال</small></div>
+          <ul>
+            <li>مجوز نصب روی یک کامپیوتر</li>
+            <li>اعتبار مجوز یک ساله</li>
+            <li>یک‌بار انتقال مجوز</li>
+            <li>بروزرسانی تا پایان مهلت مجوز</li>
+          </ul>
+          <a class="btn-plan" href="#">افزودن به سبد خرید</a>
+        </div>
+
+        <div class="plan">
+          <div class="plan-name">حرفه‌ای / دو ساله / دو کاربر</div>
+          <div class="plan-price">۶۰٬۰۰۰٬۰۰۰ <small>ریال</small></div>
+          <ul>
+            <li>مجوز نصب روی دو کامپیوتر</li>
+            <li>اتصال همزمان به یک پایگاه داده</li>
+            <li>اعتبار دو ساله</li>
+            <li>یک‌بار انتقال مجوز</li>
+            <li>بروزرسانی تا پایان مهلت مجوز</li>
+          </ul>
+          <a class="btn-plan" href="#">افزودن به سبد خرید</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- نظرات -->
+    <section>
+      <h2>تجربیات کاربران ما</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <p class="quote">«تسویه حساب به صورت فاکتور به فاکتور» — با ماهسیس، حساب مالی هر نماینده به‌صورت جداگانه و شفاف مدیریت می‌شود و ما را از مشکلات کسری نقدینگی نجات داده است.</p>
+          <div class="author">محمد حسینی</div>
+          <div class="role">معاون اجرایی یک شرکت بازرگانی</div>
+        </div>
+        <div class="testimonial">
+          <p class="quote">«دیگر نگران مغایرت انبار و فروش نیستم» — ثبت خودکار حواله‌های انبار و محاسبه سریع قیمت تمام‌شده، مدیریت انبار را به فرآیندی ساده و خودکار تبدیل کرده است.</p>
+          <div class="author">حبیب‌اله صدر</div>
+          <div class="role">صاحب یک فروشگاه زنجیره‌ای</div>
+        </div>
+        <div class="testimonial">
+          <p class="quote">«مدیریت مالی و انبار، بدون سردرگمی» — تبدیل خودکار سفارش به فاکتور و درج اتوماتیک اسناد حسابداری، خطای انسانی در ثبت‌های مالی را به صفر رسانده است.</p>
+          <div class="author">احسان علیمحمدی</div>
+          <div class="role">مدیر مالی یک شرکت پخش</div>
+        </div>
+        <div class="testimonial">
+          <p class="quote">«حسابداری آسان» — من حسابدار حرفه‌ای نیستم، اما این نرم‌افزار همه چیز را ساده کرده است. واقعاً وقتم را برای تمرکز روی توسعه کسب‌وکار آزاد کرده است.</p>
+          <div class="author">حمیدرضا</div>
+          <div class="role">بازرگان و کارآفرین</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA نهایی -->
+    <section class="cta-final">
+      <h2>فرصت را از دست ندهید</h2>
+      <p>فرآیند نصب را برای شما ساده کرده‌ایم و فرصتی سه‌ماهه برای تست نرم‌افزار در نظر گرفته‌ایم تا از تطابق آن با نیازهای خود اطمینان حاصل کنید.</p>
+      <a class="btn btn-download" href="https://github.com/MhmdAlikhani/Mahsys/releases/latest">همین حالا شروع کنید</a>
+    </section>
+
+  </div>
+
+  <!-- فوتر -->
+  <footer>
+    <div class="container">
+      <p>
+        <a href="#features">امکانات نرم‌افزار</a> ·
+        <a href="#">طرح‌های فروش</a> ·
+        <a href="#">درباره ما</a> ·
+        <a href="#">تماس با ما</a>
+      </p>
+      <p style="margin-top: 12px;">حق نشر © ۲۰۲۶ نرم‌افزار حسابداری و مدیریت کسب‌وکار ماهسیس</p>
+    </div>
+  </footer>
+
+</body>
+</html>
